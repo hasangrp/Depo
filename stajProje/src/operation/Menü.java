@@ -10,6 +10,7 @@ public class Menü {
     DaoLesson daoL = new DaoLesson();
     DaoNote daoN = new DaoNote();
     static Logger log = Logger.getLogger(DbConnection.class.getName());
+
     public void firstMenü() {
         DbConnection.getInstance();
         log.info("Chose your area of oparation\n1-Student\n2-Lesson\n3-Not\n0-exit");
@@ -37,16 +38,16 @@ public class Menü {
         do {
             switch (chose) {
                 case 1:
-                    daoS.listStudent();
+                    daoS.list();
                     break;
                 case 2:
-                    daoS.addStudent();
+                    daoS.add();
                     break;
                 case 3:
-                    daoS.deleteStudent();
+                    daoS.delete();
                     break;
                 case 4:
-                    daoS.updateStudent();
+                    daoS.update();
                     break;
                 case 5:
             }
@@ -61,16 +62,16 @@ public class Menü {
         do {
             switch (chose) {
                 case 1:
-                    daoL.listLesson();
+                    daoL.list();
                     break;
                 case 2:
-                    daoL.addLesson();
+                    daoL.add();
                     break;
                 case 3:
-                    daoL.deleteLesson();
+                    daoL.delete();
                     break;
                 case 4:
-                    daoL.updateLesson();
+                    daoL.update();
                     break;
                 case 5:
             }
@@ -85,16 +86,16 @@ public class Menü {
         do {
             switch (chose) {
                 case 1:
-                    daoN.listNot();
+                    daoN.list();
                     break;
                 case 2:
-                    daoN.addNot();
+                    daoN.add();
                     break;
                 case 3:
-                    daoN.deleteNot();
+                    daoN.delete();
                     break;
                 case 4:
-                    daoN.updateNot();
+                    daoN.update();
                     break;
             }
             log.info("Chose your oparation for Not\n1-List\n2-Add\n3-Delete\n4-Update\n0-Back");

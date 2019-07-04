@@ -10,7 +10,11 @@ public class DbConnection {
     static Logger log = Logger.getLogger(DbConnection.class.getName());
     private final String url = ("jdbc:sqlite:db0.db");
     private static DbConnection dbConnection = null;
-    private Connection con=null;
+    private Connection con = null;
+
+    public Connection getCon() {
+        return con;
+    }
 
     private DbConnection() {
         try {

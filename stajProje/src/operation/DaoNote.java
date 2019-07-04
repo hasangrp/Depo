@@ -1,25 +1,23 @@
 package operation;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
-import org.apache.log4j.Logger;
 
-public class DaoNote {
-
+public class DaoNote extends AbstractState{
+    private final String listQuery = "SELECT * from NOTE";
     Scanner scanner = new Scanner(System.in);
-    private ResultSet rs ;
-    static Logger log = Logger.getLogger(DbConnection.class.getName());
-    private final String listNote = "SELECT * from NOTE";
-    State state = new State();
-    
-    public void listNot() {
-        state.stQuery(listNote);
+
+    public DaoNote() {
+    }
+
+    @Override
+    public void list() {
+              stQuery(listQuery);
         try {
-            while (rs.next()) {
-                int student_no = rs.getInt("STUDENT_NUMBER");
-                int lesson_no = rs.getInt("LESSON_NUMBER");
-                int note = rs.getInt("NOTE");
+            while (getRs().next()) {
+                int student_no = getRs().getInt("STUDENT_NUMBER");
+                int lesson_no = getRs().getInt("LESSON_NUMBER");
+                int note = getRs().getInt("NOTE");
                 log.info("Student No:" + student_no + "\t\tLesson No:" + lesson_no + "\t\tNot:" + note);
             }
         } catch (SQLException ex) {
@@ -27,8 +25,9 @@ public class DaoNote {
         }
     }
 
-    public void addNot() {
-        log.info("how many student note Add:");
+    @Override
+    public void add() {
+            log.info("how many student note Add:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Add this student No:");
@@ -38,12 +37,13 @@ public class DaoNote {
             log.info("Add Note:");
             int note = scanner.nextInt();
             String sorgu = "INSERT INTO NOTE SELECT " + student_no + "," + lesson_no + "," + note;
-            state.stUpdate(sorgu);
-        }
+            stUpdate(sorgu);
+        }    
     }
 
-    public void deleteNot() {
-        log.info("how many student note delete:");
+    @Override
+    public void delete() {
+            log.info("how many student note delete:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Delete this student No:");
@@ -51,12 +51,13 @@ public class DaoNote {
             log.info("Delete this lesson No:");
             int lesson_no = scanner.nextInt();
             String sorgu = "Delete from NOTE where STUDENT_NUMBER=" + student_no + " and LESSON_NUMBER=" + lesson_no;
-            state.stUpdate(sorgu);
-        }
+            stUpdate(sorgu);
+        }   
     }
 
-    public void updateNot() {
-        log.info("how many student note update:");
+    @Override
+    public void update() {
+            log.info("how many student note update:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Update this student No:");
@@ -66,7 +67,9 @@ public class DaoNote {
             log.info("New Not:");
             int note = scanner.nextInt();
             String sorgu = "UPDATE NOTE set NOTE=" + note + " Where STUDENT_NUMBER=" + student_no + " and LESSON_NUMBER=" + lesson_no;
-            state.stUpdate(sorgu);
-        }
+            stUpdate(sorgu);
+        } 
     }
+    
+
 }
