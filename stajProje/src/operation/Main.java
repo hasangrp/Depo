@@ -1,9 +1,12 @@
 package operation;
 
+import database.DbConnection;
+
 public class Main {
 
     public static void main(String[] args) {
-        Menü mop = new Menü();
-        mop.firstMenü();
+        Menu mop = new Menu();
+        DbConnection.getInstance();
+        mop.firstMenu();
     }
 }

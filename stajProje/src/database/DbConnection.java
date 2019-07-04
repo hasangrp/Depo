@@ -1,4 +1,4 @@
-package operation;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,11 +11,7 @@ public class DbConnection {
     private final String url = ("jdbc:sqlite:db0.db");
     private static DbConnection dbConnection = null;
     private Connection con = null;
-
-    public Connection getCon() {
-        return con;
-    }
-
+    
     private DbConnection() {
         try {
             con = DriverManager.getConnection(url);

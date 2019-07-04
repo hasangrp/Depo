@@ -1,19 +1,19 @@
-package operation;
+package database;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class DaoLesson extends AbstractState{
+public class LessonDao extends AbstractDao {
 
-    private String listQuery = "SELECT * from LESSON";
+    private final String listQuery = "SELECT * from LESSON";
     Scanner scanner = new Scanner(System.in);
 
-    public DaoLesson() {
+    public LessonDao() {
     }
 
     @Override
     public void list() {
-           stQuery(listQuery);
+        stQuery(listQuery);
         try {
             while (getRs().next()) {
                 int lesson_no = getRs().getInt("LESSON_NUMBER");
@@ -22,11 +22,12 @@ public class DaoLesson extends AbstractState{
             }
         } catch (SQLException ex) {
             log.error("listLesson");
-        }    }
+        }
+    }
 
     @Override
     public void add() {
-            log.info("how many lesson add:");
+        log.info("how many lesson add:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Lesson No:");
@@ -40,19 +41,19 @@ public class DaoLesson extends AbstractState{
 
     @Override
     public void delete() {
-            log.info("how many delete delete:");
+        log.info("how many delete delete:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Delete this lesson No:");
             int lesson_no = scanner.nextInt();
             String sorgu = "Delete from LESSON where LESSON_NUMBER=" + lesson_no;
             stUpdate(sorgu);
-        }    
+        }
     }
 
     @Override
     public void update() {
-            log.info("how many lesson update:");
+        log.info("how many lesson update:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Update this lesson No:");
@@ -64,6 +65,3 @@ public class DaoLesson extends AbstractState{
         }
     }
 }
-    
-
-

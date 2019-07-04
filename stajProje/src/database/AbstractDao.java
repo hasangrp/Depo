@@ -1,4 +1,4 @@
-package operation;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,23 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.apache.log4j.Logger;
 
-public abstract class AbstractState {
+public abstract class AbstractDao {
 
     private final String url = ("jdbc:sqlite:db0.db");
     static Logger log = Logger.getLogger(DbConnection.class.getName());
     private Connection con;
     private ResultSet rs;
     private Statement st;
-
+   
     public ResultSet getRs() {
         return rs;
     }
-
-    public void setRs(ResultSet rs) {
-        this.rs = rs;
-    }
-
-    public AbstractState() {
+    
+    public AbstractDao() {
     }
 
     public ResultSet stQuery(String sorgu) {

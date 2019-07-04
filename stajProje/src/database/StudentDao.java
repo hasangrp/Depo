@@ -1,19 +1,19 @@
-package operation;
+package database;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class DaoStudent extends AbstractState{
-private String listQuery = "SELECT * from STUDENT";
-Scanner scanner = new Scanner(System.in);
+public class StudentDao extends AbstractDao {
 
-    public DaoStudent() {
+    private final String listQuery = "SELECT * from STUDENT";
+    Scanner scanner = new Scanner(System.in);
+
+    public StudentDao() {
     }
 
     @Override
     public void list() {
         stQuery(listQuery);
-        log.info(getRs());
         try {
             while (getRs().next()) {
                 int student_no = getRs().getInt("STUDENT_NUMBER");
@@ -28,7 +28,7 @@ Scanner scanner = new Scanner(System.in);
 
     @Override
     public void add() {
-       log.info("how many student add:");
+        log.info("how many student add:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Student No:");
@@ -39,11 +39,12 @@ Scanner scanner = new Scanner(System.in);
             int lesson_no = scanner.nextInt();
             String sorgu = "INSERT INTO STUDENT" + "(STUDENT_NUMBER,NAME,LESSON_NUMBER)" + " VALUES(" + student_no + ",'" + name + "'," + lesson_no + ")";
             stUpdate(sorgu);
-            }
+        }
     }
+
     @Override
     public void delete() {
-         log.info("how many student delete:");
+        log.info("how many student delete:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Delete this student No:");
@@ -56,7 +57,7 @@ Scanner scanner = new Scanner(System.in);
 
     @Override
     public void update() {
-           log.info("how many student update:");
+        log.info("how many student update:");
         int i = scanner.nextInt();
         for (int a = 0; a < i; a++) {
             log.info("Update this student No:");
@@ -64,10 +65,7 @@ Scanner scanner = new Scanner(System.in);
             log.info("Student new lesson No:");
             int lesson_no = scanner.nextInt();
             String sorgu = "UPDATE STUDENT Set LESSON_NUMBER=" + lesson_no + " where STUDENT_NUMBER=" + student_no;
-           stUpdate(sorgu);
+            stUpdate(sorgu);
         }
     }
 }
-
-
-

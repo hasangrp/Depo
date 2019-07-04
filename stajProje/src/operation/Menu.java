@@ -1,30 +1,34 @@
 package operation;
 
+import database.DbConnection;
+import database.NoteDao;
+import database.LessonDao;
+import database.StudentDao;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
 
-public class Menü {
+public class Menu {
 
     Scanner scanner = new Scanner(System.in);
-    DaoStudent daoS = new DaoStudent();
-    DaoLesson daoL = new DaoLesson();
-    DaoNote daoN = new DaoNote();
+    StudentDao daoS = new StudentDao();
+    LessonDao daoL = new LessonDao();
+    NoteDao daoN = new NoteDao();
     static Logger log = Logger.getLogger(DbConnection.class.getName());
 
-    public void firstMenü() {
-        DbConnection.getInstance();
+    public void firstMenu() {
+       // DbConnection.getInstance();
         log.info("Chose your area of oparation\n1-Student\n2-Lesson\n3-Not\n0-exit");
         int chose = scanner.nextInt();
         do {
             switch (chose) {
                 case 1:
-                    menüStudent();
+                    StudentMenu();
                     break;
                 case 2:
-                    menüLesson();
+                    LessonMenu();
                     break;
                 case 3:
-                    menüNot();
+                    NoteMenu();
                     break;
             }
             log.info("Chose your oparation\n1-Student\n2-Lesson\n3-Not\n0-exit");
@@ -32,7 +36,7 @@ public class Menü {
         } while (chose != 0);
     }
 
-    public void menüStudent() {
+    public void StudentMenu() {
         log.info("Chose your oparation for student \n1-List\n2-Add\n3-Delete\n4-Update\n0-Back");
         int chose = scanner.nextInt();
         do {
@@ -56,7 +60,7 @@ public class Menü {
         } while (chose != 0);
     }
 
-    public void menüLesson() {
+    public void LessonMenu() {
         log.info("Chose your oparation for lesson \n1-List\n2-Add\n3-Delete\n4-Update\n0-Back");
         int chose = scanner.nextInt();
         do {
@@ -80,7 +84,7 @@ public class Menü {
         } while (chose != 0);
     }
 
-    public void menüNot() {
+    public void NoteMenu() {
         log.info("Chose your oparation for Not \n1-List\n2-Add\n3-Delete\n4-Update\n0-Back");
         int chose = scanner.nextInt();
         do {
